@@ -1,38 +1,52 @@
-import React, { ChangeEvent, FormEvent, Fragment, useRef } from "react";
-import {  Link } from "react-router-dom";
+import { FormEvent, Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import NoteInfo from "../types/NoteInfo";
 
-
 type NoteFormProps = {
-    onSubmit: (data:NoteInfo) => void;
-}
+  addNote: (data: NoteInfo) => void;
+};
 
-const NoteForm = ({onSubmit}: NoteFormProps) => {
-  const titleRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+const NoteForm = ({ addNote }: NoteFormProps) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  const handleOnSumbit = (e: FormEvent) =>{
+  const handleOnSumbit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({
-        title: titleRef.current!.value,
-        description: descriptionRef.current!.value,
-    })
-  }
+
+    const newNote: NoteInfo = {
+      id: Date.now(),
+      title,
+      description,
+    };
+
+    addNote(newNote);
+    setTitle("");
+    setDescription("");
+  };
 
   return (
     <Fragment>
       <form onSubmit={handleOnSumbit}>
         <div className="title">
           <label htmlFor="title">Title </label>
-          <input type="text" name="title" ref={titleRef} required />
+
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
         <div className="description">
           <label htmlFor="description">Description </label>
-          <textarea name="description" ref={descriptionRef} required />
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
         </div>
       </form>
-      <button type="submit" >Save</button>
-
+      <Link to="..">
+        <button onClick={handleOnSumbit}>Save</button>
+      </Link>
       <Link to="..">
         <button type="reset">Back</button>
       </Link>
