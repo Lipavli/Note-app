@@ -2,25 +2,26 @@ import React, { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import NewNote from "./components/NewNote";
-import Main from "./components/Main";
 import NoteInfo from "./types/NoteInfo";
-import CardList from "./components/CardList";
-import NoteDetails from "./components/NoteDetails";
-import { useParams } from "react-router-dom";
+import NotesList from "./components/NotesList";
 
 function App() {
-  const [notes, setNotes] = useState<NoteInfo[]>([]);
-  const [currentNote, setCurrentNote] = useState<NoteInfo | null>(null);
 
+  const [notes, setNotes] = useState<NoteInfo[]>([]);
   const createNote = (data: NoteInfo) => {
     setNotes([...notes, data]);
   };
 
+  const deleteNote = (id: number) => {
+    const newNotes = notes.filter((newNote) => newNote.id !== id);
+    setNotes(newNotes);
+  };
+
+
   return (
     <Routes>
-      <Route path="/" element={<CardList notes={notes} />}></Route>
+      <Route path="/" element={<NotesList notes={notes} onDelete={deleteNote} />}></Route>
       <Route path="/new" element={<NewNote addNote={createNote} />}></Route>
-      <Route path="/:id" element={<NoteDetails note={currentNote} />}></Route>
     </Routes>
   );
 }

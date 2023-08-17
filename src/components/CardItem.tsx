@@ -1,15 +1,25 @@
-import React from "react";
+import React, { Fragment } from "react";
 import NoteInfo from "../types/NoteInfo";
 import { Link } from "react-router-dom";
 
-const CardItem = ({ id, title }: NoteInfo) => {
-
+interface CardItemProps {
+  note: NoteInfo;
+  onDelete: (id: number) => void;
+  id: number;
+}
+const CardItem = ({ note, onDelete, id }: CardItemProps) => {
+  const handleDelete = () => {
+    onDelete(id);
+  };
+ 
   return (
-    <div className="card">
-      <h1>Hi</h1>
-      <h1>Hi</h1>
-      <h1>Hi</h1>
-    </div>
+    <Fragment>
+      <div className="note">
+        <h2>{note.title}</h2>
+        <p>{note.description}</p>
+        <button onClick={handleDelete}>delete</button>
+      </div>
+    </Fragment>
   );
 };
 export default CardItem;
