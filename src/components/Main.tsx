@@ -1,18 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+import CardList from "./CardList";
+import NoteInfo from "../types/NoteInfo";
 
-const NotesList = () => {
+const Main = () => {
+
+
   return (
     <Fragment>
       <h1>My notes</h1>
       <Link to="/new">
         <button>Create new notes</button>
       </Link>
-      <div className="list-group">
-        
-      </div>
     </Fragment>
   );
 };
 
-export default NotesList;
+export default Main;

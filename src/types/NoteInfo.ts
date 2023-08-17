@@ -1,6 +1,6 @@
 type NoteInfo = {
     id?: number;
-    title: string;
+    title?: string;
     description?: string;
    }
 export default NoteInfo;  

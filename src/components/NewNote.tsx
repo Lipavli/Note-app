@@ -1,17 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import NoteForm from "./NoteForm";
 import NoteInfo from "../types/NoteInfo";
 
 type NewNoteProps = {
-    onSubmit: (data:NoteInfo) => void
-}
-
-const NewNote = ({onSubmit}: NewNoteProps) => {
+  addNote: (data: NoteInfo) => void;
+};
+// this is a page where we create notes 
+const NewNote = ({ addNote }: NewNoteProps) => {
   return (
-    <>
+    <Fragment>
       <h1>New note</h1>
-      <NoteForm onSubmit={onSubmit}/>
-    </>
+      <NoteForm addNote={addNote} />
+    </Fragment>
   );
 };
 
