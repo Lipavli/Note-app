@@ -29,9 +29,9 @@ const NoteForm = ({ addNote }: NoteFormProps) => {
       <form onSubmit={handleOnSumbit}>
         <div className="title">
           <label htmlFor="title">Title </label>
-
           <input
             type="text"
+            placeholder="Add title of your note"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -40,14 +40,13 @@ const NoteForm = ({ addNote }: NoteFormProps) => {
           <label htmlFor="description">Description </label>
           <textarea
             value={description}
+            placeholder="Add body of your note"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
       </form>
-      <Link to="..">
-        <button onClick={handleOnSumbit}>Save</button>
-      </Link>
-      <Link to="..">
+      <button onClick={handleOnSumbit}>Save</button>
+      <Link to="/">
         <button type="reset">Back</button>
       </Link>
     </Fragment>

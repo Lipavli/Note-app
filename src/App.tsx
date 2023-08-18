@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import NewNote from "./components/NewNote";
@@ -7,8 +7,9 @@ import NotesList from "./components/NotesList";
 
 function App() {
 
-  const [notes, setNotes] = useState<NoteInfo[]>([]);
-  const createNote = (data: NoteInfo) => {
+  const [notes, setNotes] = useState<NoteInfo[]>([]); // this state id used to store notes
+
+  const createNote = (data: NoteInfo) => { 
     setNotes([...notes, data]);
   };
 
@@ -17,10 +18,11 @@ function App() {
     setNotes(newNotes);
   };
 
+ 
 
   return (
     <Routes>
-      <Route path="/" element={<NotesList notes={notes} onDelete={deleteNote} />}></Route>
+      <Route path="/" element={<NotesList notes={notes}  onDelete={deleteNote}  />}></Route>
       <Route path="/new" element={<NewNote addNote={createNote} />}></Route>
     </Routes>
   );
