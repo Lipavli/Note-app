@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import NoteInfo from "./types/NoteInfo";
 import NotesList from "./components/NotesList";
-import EditNoteForm from "./components/EditNoteForm";
-import NoteForm from "./components/NoteForm";
+import Aside from "./components/Aside";
+
 
 function App() {
   const [notes, setNotes] = useState<NoteInfo[]>([]); // this state id used to store notes
@@ -19,25 +19,28 @@ function App() {
     setNotes(newNotes);
   };
 
-
   const updateNote = (editedNote: NoteInfo) => {
     setNotes((prev) =>
       prev.map((note) => (note.id === editedNote.id ? editedNote : note))
     );
   };
 
+
+  const [showCreateNote, setShowCreateNote] = useState<boolean>(false);
+
+  const handleShow = () => {
+    setShowCreateNote(!showCreateNote);
+  };
+  // end of this show/hide modal
+
   return (
-    // <Routes>
-    //   <Route
-    //     path="/"
-    //     element={<NotesList notes={notes} onDelete={deleteNote} editNote={editNote} />}
-    //   ></Route>
-    //   <Route path="/new" element={<NewNote addNote={createNote} />}/>
-    // </Routes>
     <div className="App">
+      <Aside handleShow={handleShow} />
+      <hr />
       <NotesList notes={notes} onDelete={deleteNote} updateNote={updateNote} />
-      
-      <NewNote addNote={createNote} />
+      {showCreateNote ? (
+        <NewNote addNote={createNote} />
+      ) : null}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import NoteInfo from "../types/NoteInfo";
 import { Link } from "react-router-dom";
 import EditNoteForm from "./EditNoteForm";
+import { PiTrashThin, PiNotePencilThin } from "react-icons/pi";
 
 interface CardItemProps {
   note: NoteInfo;
@@ -12,24 +13,29 @@ interface CardItemProps {
 const CardItem = ({ note, onDelete, id, updateNote }: CardItemProps) => {
   const [edit, setEdit] = useState<boolean>(false);
 
+  const handleEdit = () => {
+    setEdit(!edit);
+  };
+
   const handleDelete = () => {
     onDelete(id);
   };
 
-  const handleEdit = () => {
-    setEdit(!edit)
-  };
-
   return (
     <Fragment>
-      <div className="note">
-        <h2>{note.title}</h2>
+      <div className="singleNote" style={{ backgroundColor: note.color }}>
+        <h3>{note.title}</h3>
         <p>{note.description}</p>
-        <button onClick={handleDelete}>delete</button>
-        <button onClick={handleEdit}>edit</button>
+        <PiTrashThin onClick={handleDelete} />
+        <PiNotePencilThin onClick={handleEdit} />
         {edit ? (
-          <EditNoteForm updateNote={updateNote} handleEdit={handleEdit} note={note}/>
+          <EditNoteForm
+            updateNote={updateNote}
+            handleEdit={handleEdit}
+            note={note}
+          />
         ) : null}
+   
       </div>
     </Fragment>
   );

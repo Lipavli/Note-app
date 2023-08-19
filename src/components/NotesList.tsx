@@ -2,21 +2,23 @@ import React, { FormEvent, ChangeEvent, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import CardItem from "./CardItem";
 import NoteInfo from "../types/NoteInfo";
+import Aside from "./Aside";
+import Search from "./Search";
 
 interface NotesListProps {
   notes: NoteInfo[];
   onDelete: (id: number) => void;
   updateNote: (note: NoteInfo) => void;
 
-
 }
 
-const NotesList = ({ notes, onDelete, updateNote}: NotesListProps) => {
-  const [search, setSearch] = useState(""); // this state is used to set the search
+const NotesList = ({
+  notes,
+  onDelete,
+  updateNote,
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value.toLowerCase());
-  };
+}: NotesListProps) => {
+  const [search, setSearch] = useState(""); // this state is used to set the search
 
   // function which returns filterd notes that matches the search input or current notes array
   const filtered = search
@@ -26,21 +28,10 @@ const NotesList = ({ notes, onDelete, updateNote}: NotesListProps) => {
     : notes;
 
   return (
-    <Fragment>
-      <h1>My notes</h1>
-      <Link to="/new">
-        <button>Create new notes</button>
-      </Link>
-
-      {/* search for notes */}
-      <input
-        type="text"
-        value={search}
-        onChange={handleSearch}
-        placeholder="find notes"
-      />
-      {/* end  search for notes*/}
-      <div className="note-list">
+    <main>
+      <Search search={search} setSearch={setSearch} />
+      <h2>Notes</h2>
+      <div className="notesList">
         {filtered.map((note) => (
           <CardItem
             key={note.id}
@@ -51,7 +42,7 @@ const NotesList = ({ notes, onDelete, updateNote}: NotesListProps) => {
           />
         ))}
       </div>
-    </Fragment>
+    </main>
   );
 };
 
