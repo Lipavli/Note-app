@@ -6,18 +6,24 @@ import NoteInfo from "../types/NoteInfo";
 interface NotesListProps {
   notes: NoteInfo[];
   onDelete: (id: number) => void;
+  updateNote: (note: NoteInfo) => void;
+
 
 }
 
-const NotesList = ({ notes, onDelete}: NotesListProps) => {
-  
+const NotesList = ({ notes, onDelete, updateNote}: NotesListProps) => {
   const [search, setSearch] = useState(""); // this state is used to set the search
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value.toUpperCase());
+    setSearch(e.target.value.toLowerCase());
   };
 
-  const filtered = search ? notes.filter((note)=> note.title.toUpperCase().includes(search.toUpperCase())) : notes;
+  // function which returns filterd notes that matches the search input or current notes array
+  const filtered = search
+    ? notes.filter((note) =>
+        note.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : notes;
 
   return (
     <Fragment>
@@ -25,12 +31,15 @@ const NotesList = ({ notes, onDelete}: NotesListProps) => {
       <Link to="/new">
         <button>Create new notes</button>
       </Link>
+
+      {/* search for notes */}
       <input
         type="text"
         value={search}
         onChange={handleSearch}
         placeholder="find notes"
       />
+      {/* end  search for notes*/}
       <div className="note-list">
         {filtered.map((note) => (
           <CardItem
@@ -38,6 +47,7 @@ const NotesList = ({ notes, onDelete}: NotesListProps) => {
             note={note}
             onDelete={onDelete}
             id={note.id}
+            updateNote={updateNote}
           />
         ))}
       </div>

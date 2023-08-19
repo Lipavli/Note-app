@@ -1,14 +1,17 @@
-import { FormEvent, Fragment, useState } from "react";
+import { FormEvent, Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NoteInfo from "../types/NoteInfo";
 
 type NoteFormProps = {
   addNote: (data: NoteInfo) => void;
+
 };
 
 const NoteForm = ({ addNote }: NoteFormProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  
 
   const handleOnSumbit = (e: FormEvent) => {
     e.preventDefault();
