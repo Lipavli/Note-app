@@ -1,38 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --colorOne: #9fd7d7; 
+    --colorTwo: #a4b2f0;
+    --colorThree:  #dfa3e7;
+    --colorFour: #e7a3b3;
+    --colorFive:  #a3e7b0;
+    --colorSix: #e7e1a3;
+
+}
+
+.bg-red{
+    background-color: red;
+}
 .App {
-  text-align: center;
+    display: flex;
+    min-height: 100vh;
+    max-width: 100vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    background-color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+aside {
+    flex: 15%;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+main {
+    flex: 85%;
+    margin: 30px 50px;
+
+}
+hr{
+    border: .01px solid rgba(128, 128, 128, 0.15);
+}
+/* h1 for logo */
+h1 {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(28, 24, 24, 0.72);
+
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+    font-weight: 100;
+    font-size: 2rem;
+    margin-bottom: 20px;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/* styling notes container */
+
+
+
+
+
+/* styling sinle note */
+
+.singleNote{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    overflow: scroll;
+    margin-bottom: 20px;
+}
+.singleNote h3{
+    margin: 10px 0 10px 0;
+}
+.singleNote p{
+    width: 150px;
 }
