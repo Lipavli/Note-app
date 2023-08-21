@@ -6,23 +6,25 @@
     box-sizing: border-box;
 }
 
-:root{
-    --colorOne: #9fd7d7; 
+:root {
+    --colorOne: #9fd7d7;
     --colorTwo: #a4b2f0;
-    --colorThree:  #dfa3e7;
+    --colorThree: #dfa3e7;
     --colorFour: #e7a3b3;
-    --colorFive:  #a3e7b0;
+    --colorFive: #a3e7b0;
     --colorSix: #e7e1a3;
 
 }
 
-.bg-red{
+.bg-red {
     background-color: red;
 }
+
 .App {
     display: flex;
     min-height: 100vh;
     max-width: 100vw;
+    position: relative;
 }
 
 body {
@@ -38,7 +40,7 @@ aside {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    
+
 }
 
 main {
@@ -46,9 +48,11 @@ main {
     margin: 30px 50px;
 
 }
-hr{
+
+hr {
     border: .01px solid rgba(128, 128, 128, 0.15);
 }
+
 /* h1 for logo */
 h1 {
     font-family: 'Julius Sans One', sans-serif;
@@ -75,13 +79,19 @@ svg {
 
 /* styling notes container */
 
+.notesList{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
 
-
+   
+}
 
 
 /* styling sinle note */
 
-.singleNote{
+.singleNote {
     width: 200px;
     height: 200px;
     border-radius: 10px;
@@ -89,9 +99,76 @@ svg {
     overflow: scroll;
     margin-bottom: 20px;
 }
-.singleNote h3{
+
+.singleNote h3 {
     margin: 10px 0 10px 0;
 }
-.singleNote p{
+
+.singleNote p {
     width: 150px;
+}
+
+
+
+/* styling add form */
+
+.addForm {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 30%;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: rgb(232, 238, 243);
+    box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 1rem;
+}
+
+:is(.addForm input, .addForm textarea) {
+    width: 300px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
+
+}
+
+.addForm input {
+    height: 30px;
+}
+
+.addForm textarea {
+    height: 80px;
+}
+
+.addForm button {
+    width: 70px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+
+}
+
+
+/* media queries */
+
+@media screen and (max-width: 475px) {
+    .addForm {
+        padding: 30px;
+        width: 250px;
+        height: 300px;
+    }
+
+    :is(.addForm input, .addForm textarea) {
+        width: 180px;
+    }
 }

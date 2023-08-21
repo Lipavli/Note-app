@@ -1,15 +1,14 @@
 import { FormEvent, Fragment, useState, useEffect, ChangeEvent } from "react";
-import { Link } from "react-router-dom";
 import NoteInfo from "../types/NoteInfo";
-import { CiPickerEmpty } from "react-icons/ci";
-import  colorOptions  from './color/colorOptions'
+import colorOptions from "../color/colorOptions";
+import { TfiClose } from 'react-icons/tfi'
 
 type NoteFormProps = {
   addNote: (data: NoteInfo) => void;
-
+  handleClose: () => void;
 };
 
-const NoteForm = ({ addNote }: NoteFormProps) => {
+const NoteForm = ({ addNote, handleClose }: NoteFormProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("");
@@ -20,7 +19,7 @@ const NoteForm = ({ addNote }: NoteFormProps) => {
       id: Date.now(),
       title,
       description,
-      color: color
+      color: color,
     };
 
     addNote(newNote);
@@ -29,39 +28,36 @@ const NoteForm = ({ addNote }: NoteFormProps) => {
     setColor("");
   };
 
-  
-
   return (
-    <Fragment>
-      <form onSubmit={handleOnSumbit} >
-        <input
-          type="text"
-          placeholder="Add title of your note"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <textarea
-          value={description}
-          placeholder="Add body of your note"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <div className="color-picker">
-          <select
-            id="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          >
-            {colorOptions.map((color, index) => (
-              <option key={index} value={color}>
-                {color}
-              </option>
-            ))}
-          </select>
-        </div>
-      </form>
-      {/* <CiPickerEmpty /> */}
+    <form onSubmit={handleOnSumbit} className="addForm">
+      <TfiClose onClick={handleClose}/>
+      <input
+        type="text"
+        placeholder="Add title of your note"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <textarea
+        value={description}
+        placeholder="Add body of your note"
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <div className="color-picker">
+        <select
+        
+          id="color"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+        >
+          {colorOptions.map((color, index) => (
+            <option key={index} value={color}>
+              {color}
+            </option>
+          ))}
+        </select>
+      </div>
       <button onClick={handleOnSumbit}>Save</button>
-    </Fragment>
+    </form>
   );
 };
 

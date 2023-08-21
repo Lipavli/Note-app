@@ -31,6 +31,10 @@ function App() {
   const handleShow = () => {
     setShowCreateNote(!showCreateNote);
   };
+
+  const handleClose = () => {
+    setShowCreateNote(false);
+  }
   // end of this show/hide modal
 
   return (
@@ -39,7 +43,7 @@ function App() {
       <hr />
       <NotesList notes={notes} onDelete={deleteNote} updateNote={updateNote} />
       {showCreateNote ? (
-        <NewNote addNote={createNote} />
+        <NewNote addNote={createNote} handleClose={handleClose}/>
       ) : null}
     </div>
   );

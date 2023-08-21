@@ -4,7 +4,7 @@ import { PiPlusCircleThin } from "react-icons/pi";
 interface AsideProps {
   handleShow: () => void;
 }
-const Aside = ({ handleShow }: AsideProps) => {
+const Aside = ({ handleShow}: AsideProps) => {
   return (
     <aside>
       <h1>JustNote</h1>
