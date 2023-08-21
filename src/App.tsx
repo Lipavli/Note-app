@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import NoteInfo from "./types/NoteInfo";
 import NotesList from "./components/NotesList";
 import Aside from "./components/Aside";
-
+import {DragDropContext, DropResult} from 'react-beautiful-dnd'
 
 function App() {
   const [notes, setNotes] = useState<NoteInfo[]>([]); // this state id used to store notes
@@ -25,7 +24,6 @@ function App() {
     );
   };
 
-
   const [showCreateNote, setShowCreateNote] = useState<boolean>(false);
 
   const handleShow = () => {
@@ -34,18 +32,50 @@ function App() {
 
   const handleClose = () => {
     setShowCreateNote(false);
-  }
+  };
   // end of this show/hide modal
 
+
+  const onDragEnd = (result: DropResult) => {
+    // const { destination, source } = result;
+
+    // if (!destination) {
+    //   return;
+    // }
+    // if (
+    //   destination.droppableId === source.droppableId &&
+    //   destination.index === source.index
+    // ) {
+    //   return;
+    // }
+
+    // let move;
+
+    
+    // if (source.droppableId === "notesList") {
+    //   move = notes[source.index];
+    //   notes.splice(source.index, 1); 
+    // }
+    
+    // if (destination.droppableId === "TodosList") {
+    //   notes.splice(destination.index, 0, move);
+    // }
+
+    // setNotes(notes)
+  };
+
   return (
+    <DragDropContext onDragEnd={onDragEnd}>
     <div className="App">
       <Aside handleShow={handleShow} />
       <hr />
       <NotesList notes={notes} onDelete={deleteNote} updateNote={updateNote} />
       {showCreateNote ? (
-        <NewNote addNote={createNote} handleClose={handleClose}/>
+        <NewNote addNote={createNote} handleClose={handleClose} />
       ) : null}
+      {/* <NotFound/> */}
     </div>
+    </DragDropContext>
   );
 }
 
