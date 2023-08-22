@@ -47,6 +47,8 @@ aside {
 main {
     flex: 85%;
     margin: 30px 50px;
+    flex-direction: row-reverse;
+
 
 }
 
@@ -86,7 +88,6 @@ svg {
     flex-wrap: wrap;
     gap: 2rem;
 
-
 }
 
 
@@ -98,6 +99,10 @@ svg {
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 20px;
+    position: relative;
+    
+
+
 }
 
 .singleNote h3 {
@@ -106,12 +111,12 @@ svg {
 
 .singleNote p {
     max-width: 200px;
-    height: 90px;
+    height: 80px;
     overflow: scroll;
-    margin: 10px 0 10px 0;
-
+    margin: 10px 0 20px 0;
 
 }
+
 
 
 
@@ -127,7 +132,7 @@ svg {
     width: 400px;
     height: 300px;
     border-radius: 20px;
-    background-color: rgb(232, 238, 243);
+    background-color: rgb(255, 255, 255);
     box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
     display: flex;
     flex-direction: column;
@@ -152,16 +157,47 @@ svg {
     height: 80px;
 }
 
-.addForm button {
-    width: 70px;
-    height: 40px;
-    cursor: pointer;
-    background-color: white;
-    border: none;
+
+
+/* edit form styling */
+
+.editForm {
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
-    font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px 20px;
+}
+
+.editForm input, .editForm textarea{
+    padding-left: 20px;
+    border: rgba(128, 128, 128, 0.349) 1px solid;
+    border-radius: 10px;
+    color: rgb(100, 99, 99);
+    border: none;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.118);
 
 }
+.editForm input{
+    height: 30px;
+    margin: 10px 0;
+}
+.editForm textarea{
+    height: 70px;
+    padding-top: 10px;
+}
+
+
+
+
+
 
 /* not found styling */
 
@@ -201,11 +237,20 @@ svg {
 
 
 
+
+
+
+
+
 /* media queries */
 
 @media screen and (max-width: 695px) {
     .singleNote {
-        width: 250px;
+        margin: auto;
+        width: 220px;
+    }
+    .editForm {
+        width: 220px;
     }
 
     .notesList {
@@ -238,5 +283,9 @@ svg {
 
     :is(.addForm input, .addForm textarea) {
         width: 180px;
+    }
+
+    .notesList {
+        max-width: 90%;
     }
 }
