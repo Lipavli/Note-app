@@ -6,20 +6,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --colorOne: #9fd7d7;
-    --colorTwo: #a4b2f0;
-    --colorThree: #dfa3e7;
-    --colorFour: #e7a3b3;
-    --colorFive: #a3e7b0;
-    --colorSix: #e7e1a3;
-
-}
-
-.bg-red {
-    background-color: red;
-}
-
 .App {
     display: flex;
     min-height: 100vh;
@@ -48,8 +34,6 @@ main {
     flex: 85%;
     margin: 30px 50px;
     flex-direction: row-reverse;
-
-
 }
 
 hr {
@@ -72,7 +56,6 @@ h2 {
 }
 
 
-
 svg {
     width: 30px;
     height: 30px;
@@ -84,24 +67,21 @@ svg {
 
 .notesList {
     max-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(300px, 2fr);
+
 
 }
 
 
-/* styling sinle note */
+/* styling sinlge note */
 
 .singleNote {
-    width: 200px;
-    height: 200px;
+
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 20px;
     position: relative;
-    
-
 
 }
 
@@ -110,8 +90,8 @@ svg {
 }
 
 .singleNote p {
-    max-width: 200px;
-    height: 80px;
+    max-width: 90%;
+    height: 70px;
     overflow: scroll;
     margin: 10px 0 20px 0;
 
@@ -130,20 +110,26 @@ svg {
     right: 0;
     top: 200px;
     width: 400px;
-    height: 300px;
+    height: 350px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     padding: 50px;
-    gap: 1rem;
+    /* gap: 1rem; */
+}
+
+.addForm svg{
+    width: 20px;
+    height: 20px;
 }
 
 :is(.addForm input, .addForm textarea) {
     width: 300px;
     padding: 10px 20px;
     border: none;
+    margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 3px 3px 10px rgba(128, 128, 128, 0.196);
 
@@ -151,6 +137,7 @@ svg {
 
 .addForm input {
     height: 30px;
+    margin-top: 20px;
 }
 
 .addForm textarea {
@@ -158,12 +145,89 @@ svg {
 }
 
 
+/* custom color picker*/
+
+.colorPicker {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+    transform: rotate(270deg);
+
+
+}
+
+.selected {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid #cccccc80;
+    cursor: pointer;
+    margin-bottom: 10px;
+    position: relative;
+
+}
+
+.options {
+    position: absolute;
+    display: none;
+    list-style: none;
+  
+
+}
+
+
+li {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+
+.options.active {
+    display: block;
+   
+}
+
+.color {
+    cursor: pointer;
+}
+
+.color-1 {
+    background-color: #ffadad;
+}
+
+.color-2 {
+    background-color: #ffd6a5;
+}
+
+.color-3 {
+    background-color: #fdffb6;
+}
+
+.color-4 {
+    background-color: #e4f1ee;
+}
+
+.color-5 {
+    background-color: #d9edf8;
+}
+
+.color-6 {
+    background-color: #dedaf4;
+}
+
+
+
+
+
 
 /* edit form styling */
 
 .editForm {
-    width: 200px;
-    height: 200px;
+
+    width: 100%;
+    height: 186px;
     border-radius: 10px;
     position: absolute;
     top: 0;
@@ -176,7 +240,8 @@ svg {
     padding: 10px 20px;
 }
 
-.editForm input, .editForm textarea{
+.editForm input,
+.editForm textarea {
     padding-left: 20px;
     border: rgba(128, 128, 128, 0.349) 1px solid;
     border-radius: 10px;
@@ -185,11 +250,13 @@ svg {
     box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.118);
 
 }
-.editForm input{
+
+.editForm input {
     height: 30px;
     margin: 10px 0;
 }
-.editForm textarea{
+
+.editForm textarea {
     height: 70px;
     padding-top: 10px;
 }
@@ -199,7 +266,13 @@ svg {
 
 
 
-/* not found styling */
+
+
+
+
+
+
+/* not found  page styling */
 
 .notFound {
     width: 100%;
@@ -213,8 +286,6 @@ svg {
 .notFound p {
     text-align: center;
 }
-
-
 
 .animatedImg {
     animation: move 7s infinite alternate;
@@ -236,27 +307,7 @@ svg {
 }
 
 
-
-
-
-
-
-
 /* media queries */
-
-@media screen and (max-width: 695px) {
-    .singleNote {
-        margin: auto;
-        width: 220px;
-    }
-    .editForm {
-        width: 220px;
-    }
-
-    .notesList {
-        justify-content: center;
-    }
-}
 
 @media screen and (max-width: 495px) {
     h2 {
@@ -275,17 +326,34 @@ svg {
         flex: 0;
     }
 
+    li, .selected{
+        margin-bottom: 0;
+    }
+
     .addForm {
         padding: 30px;
         width: 250px;
-        height: 300px;
+        height: 330px;
     }
 
     :is(.addForm input, .addForm textarea) {
         width: 180px;
     }
 
-    .notesList {
-        max-width: 90%;
+    .singleNote,
+    .editForm {
+        width: 200px;
+        height: 200px;
+
     }
+
+    .notesList {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    
 }

@@ -24,33 +24,31 @@ const CardItem = ({ note, onDelete, id, updateNote, index }: CardItemProps) => {
   };
 
   return (
-    <Fragment>
-      <Draggable draggableId={note.id.toString()} index={index}>
-        {(provided) => (
-          <div
-            className="singleNote"
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            style={{ backgroundColor: note.color }}
-          >
-            <h3>{note.title}</h3>
-            <p>{note.description}</p>
-            <div className="controlls">
-              <PiTrashThin onClick={handleDelete} />
-              <PiNotePencilThin onClick={handleEdit} />
-              {edit ? (
-                <EditNoteForm
-                  updateNote={updateNote}
-                  handleEdit={handleEdit}
-                  note={note}
-                />
-              ) : null}
-            </div>
-          </div>
-        )}
-      </Draggable>
-    </Fragment>
+    <Draggable draggableId={note.id.toString()} index={index}>
+      {(provided) => (
+        <div
+          className="singleNote"
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          style={{ backgroundColor: note.color }}
+        >
+          <h3>{note.title}</h3>
+          <p>{note.description}</p>
+          {/* <div className="controlls"> */}
+          <PiTrashThin onClick={handleDelete} />
+          <PiNotePencilThin onClick={handleEdit} />
+          {edit ? (
+            <EditNoteForm
+              updateNote={updateNote}
+              handleEdit={handleEdit}
+              note={note}
+            />
+          ) : null}
+        </div>
+        // </div>
+      )}
+    </Draggable>
   );
 };
 export default CardItem;

@@ -5,7 +5,7 @@ import NoteInfo from "../types/NoteInfo";
 import Aside from "./Aside";
 import Search from "./Search";
 import NotFound from "./NotFound";
-import { Droppable } from "react-beautiful-dnd";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 interface NotesListProps {
   notes: NoteInfo[];
@@ -38,18 +38,29 @@ const NotesList = ({ notes, onDelete, updateNote }: NotesListProps) => {
           >
             {filtered.length > 0 ? (
               filtered.map((note, index) => (
-                <CardItem
-                  key={note.id}
-                  note={note}
-                  onDelete={onDelete}
-                  id={note.id}
-                  updateNote={updateNote}
-                  index={index}
-                />
+                <Draggable draggableId={note.id.toString()} index={index}>
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                    >
+                      <CardItem
+                        key={note.id}
+                        note={note}
+                        onDelete={onDelete}
+                        id={note.id}
+                        updateNote={updateNote}
+                        index={index}
+                      />
+                    </div>
+                  )}
+                </Draggable>
               ))
             ) : (
               <NotFound />
             )}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

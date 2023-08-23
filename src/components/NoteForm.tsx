@@ -1,7 +1,8 @@
 import { FormEvent, Fragment, useState, useEffect, ChangeEvent } from "react";
 import NoteInfo from "../types/NoteInfo";
-import colorOptions from "../color/colorOptions";
-import { TfiClose } from 'react-icons/tfi'
+import { TfiClose } from "react-icons/tfi";
+import MyButton from "../UI/MyButton";
+import ColorPicker from "./ColorPicker";
 
 type NoteFormProps = {
   addNote: (data: NoteInfo) => void;
@@ -25,12 +26,11 @@ const NoteForm = ({ addNote, handleClose }: NoteFormProps) => {
     addNote(newNote);
     setTitle("");
     setDescription("");
-    setColor("");
   };
 
   return (
     <form onSubmit={handleOnSumbit} className="addForm">
-      <TfiClose onClick={handleClose}/>
+      <TfiClose onClick={handleClose} />
       <input
         type="text"
         placeholder="Add title of your note"
@@ -42,21 +42,8 @@ const NoteForm = ({ addNote, handleClose }: NoteFormProps) => {
         placeholder="Add body of your note"
         onChange={(e) => setDescription(e.target.value)}
       />
-      <div className="color-picker">
-        <select
-        
-          id="color"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-        >
-          {colorOptions.map((color, index) => (
-            <option key={index} value={color}>
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button onClick={handleOnSumbit}>Save</button>
+      <ColorPicker color={color} setColor={setColor}/>
+      <MyButton onClick={handleOnSumbit}>Save</MyButton>
     </form>
   );
 };

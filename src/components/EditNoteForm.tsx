@@ -1,6 +1,7 @@
 import React, { ChangeEvent, Fragment, useState } from "react";
 import NoteForm from "./NoteForm";
 import NoteInfo from "../types/NoteInfo";
+import MyButton from "../UI/MyButton";
 
 type EditNoteFormProps = {
   updateNote: (note: NoteInfo) => void;
@@ -31,7 +32,7 @@ const EditNoteForm = ({ updateNote, handleEdit, note }: EditNoteFormProps) => {
   };
   return (
     <Fragment>
-      <form onSubmit={handleSumbit}>
+      <form onSubmit={handleSumbit} className="editForm">
         <input
           name="title"
           type="text"
@@ -39,7 +40,7 @@ const EditNoteForm = ({ updateNote, handleEdit, note }: EditNoteFormProps) => {
           value={editNote.title}
         />
         <textarea name='description' value={editNote.description} onChange={handleChangeDescription}/>
-        <button type="submit">save</button>
+        <MyButton type="submit">Save</MyButton>
       </form>
     </Fragment>
   );
