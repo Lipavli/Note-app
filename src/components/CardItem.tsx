@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import EditNoteForm from "./EditNoteForm";
 import { PiTrashThin, PiNotePencilThin } from "react-icons/pi";
 import { Draggable } from "react-beautiful-dnd";
+import { BsArrowsAngleExpand, BsArrowsExpand } from "react-icons/bs";
+import DescriptionModal from "./DescriptionModal";
 
 interface CardItemProps {
   note: NoteInfo;
@@ -23,6 +25,12 @@ const CardItem = ({ note, onDelete, id, updateNote, index }: CardItemProps) => {
     onDelete(id);
   };
 
+  
+  const [showModal, setShowModal] = useState(false);
+  const mouseOnClick = () => {
+    setShowModal((prevShow) => !prevShow);
+  };
+
   return (
     <Draggable draggableId={note.id.toString()} index={index}>
       {(provided) => (
@@ -34,8 +42,15 @@ const CardItem = ({ note, onDelete, id, updateNote, index }: CardItemProps) => {
           style={{ backgroundColor: note.color }}
         >
           <h3>{note.title}</h3>
-          <p>{note.description}</p>
-          {/* <div className="controlls"> */}
+          <BsArrowsAngleExpand onClick={mouseOnClick} className="expandSvg"/>
+          {showModal ? (
+            <DescriptionModal
+              description={note.description}
+              showModal={showModal}
+            />
+          ) : (
+            <p>{note.description}</p>
+          )}
           <PiTrashThin onClick={handleDelete} />
           <PiNotePencilThin onClick={handleEdit} />
           {edit ? (
@@ -46,7 +61,6 @@ const CardItem = ({ note, onDelete, id, updateNote, index }: CardItemProps) => {
             />
           ) : null}
         </div>
-        // </div>
       )}
     </Draggable>
   );

@@ -19,8 +19,6 @@ function App() {
     showCreateNote,
   } = useNotes();
 
-  
-
   return (
     <div className="App">
       <Aside handleShow={handleShow} />

@@ -43,29 +43,6 @@ const useNotes = () => {
   };
 
 
-  //   const onDragEnd = (result: DropResult) => {
-  //     const { destination, source } = result;
-  //     if (!destination) return;
-  //   if (
-  //     destination.droppableId === source.droppableId &&
-  //     destination.index === source.index
-  //   ) {
-  //     return;
-  //   }
-
-  //   let move;
-
-  //   if (source.droppableId === "notesList") {
-  //     move = notes[source.index];
-  //     notes.splice(source.index, 1);
-  //   } else return;
-
-  //   if (destination.droppableId === "notesList") {
-  //     notes.splice(destination.index, 0, move);
-  //   }
-
-  //   setNotes(notes);
-  // };
 
   return {
     notes,

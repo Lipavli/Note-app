@@ -1,0 +1,13 @@
+.modalContainer {
+    box-sizing: border-box;
+    min-height: 100px;
+}
+
+
+
+@media screen and (max-width: 495px) {
+    .modalContainer {
+        width: 150px;
+
+    }
+}

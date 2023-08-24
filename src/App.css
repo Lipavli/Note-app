@@ -120,7 +120,7 @@ svg {
     /* gap: 1rem; */
 }
 
-.addForm svg{
+.addForm svg {
     width: 20px;
     height: 20px;
 }
@@ -144,6 +144,14 @@ svg {
     height: 80px;
 }
 
+
+.expandSvg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+}
 
 /* custom color picker*/
 
@@ -172,7 +180,7 @@ svg {
     position: absolute;
     display: none;
     list-style: none;
-  
+
 
 }
 
@@ -186,7 +194,7 @@ li {
 
 .options.active {
     display: block;
-   
+
 }
 
 .color {
@@ -227,7 +235,8 @@ li {
 .editForm {
 
     width: 100%;
-    height: 186px;
+    min-height: 100%;
+
     border-radius: 10px;
     position: absolute;
     top: 0;
@@ -326,7 +335,8 @@ li {
         flex: 0;
     }
 
-    li, .selected{
+    li,
+    .selected {
         margin-bottom: 0;
     }
 
@@ -343,7 +353,7 @@ li {
     .singleNote,
     .editForm {
         width: 200px;
-        height: 200px;
+        min-height: 100%;
 
     }
 
@@ -355,5 +365,5 @@ li {
         align-items: center;
     }
 
-    
+
 }
